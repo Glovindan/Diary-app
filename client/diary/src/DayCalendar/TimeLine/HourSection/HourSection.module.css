@@ -1,0 +1,17 @@
+.row {
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: gray solid 1px;
+    color: gray;
+}
+
+.firstColumn {
+    text-align: center;
+    width: 50px;
+    border-right: gray solid 1px;
+}
+
+.secondColumn {
+    width: 100%;
+}

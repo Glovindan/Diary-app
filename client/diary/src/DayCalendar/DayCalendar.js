@@ -1,9 +1,9 @@
-import TimeLine from "./TimeLine/TimeLine";
+import Timeline from "./TimeLine/Timeline";
 
 function DayCalendar() {
   return (
     <div>
-      <TimeLine/>
+      <Timeline/>
     </div>
   );
 }
