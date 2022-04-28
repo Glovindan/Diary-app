@@ -2,16 +2,21 @@
     height: 20px;
     display: flex;
     flex-direction: row;
-    border-bottom: gray solid 1px;
-    color: gray;
+    border-bottom: lightgrey dotted 1px;
+    font-family: Arial;
+    font-size: 14px;
 }
 
 .firstColumn {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 50px;
-    border-right: gray solid 1px;
+    border-right: lightgrey solid 1px;
 }
 
 .secondColumn {
     width: 100%;
+    /*background: cornsilk;*/
 }

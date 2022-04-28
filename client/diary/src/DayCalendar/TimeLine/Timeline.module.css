@@ -1,7 +1,6 @@
 .container {
-    width: 500px;
     list-style: none;
     padding: 0;
-    border: gray 1px solid;
+    border: lightgrey 1px solid;
     border-bottom: none;
 }
