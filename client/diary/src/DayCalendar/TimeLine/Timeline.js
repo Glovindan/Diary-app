@@ -9,15 +9,13 @@ const Timeline = () => {
   }
 
   const timeLine = hoursArr.map((hour) =>
-    <li key={hour.id}><HourSection hour={hour}/></li>
+    <HourSection key={hour.id} hour={hour}/>
   )
 
   return (
-    <div>
-      <ul className={styles.container}>
-        {timeLine}
-      </ul>
-    </div>
+    <ul className={styles.container}>
+      {timeLine}
+    </ul>
   )
 }
 

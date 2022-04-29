@@ -3,8 +3,8 @@ import styles from './DayCalendar.module.css'
 
 function DayCalendar() {
   return (
-    <div>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div>
         <Timeline/>
       </div>
     </div>

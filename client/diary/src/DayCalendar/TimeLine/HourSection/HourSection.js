@@ -4,7 +4,7 @@ const HourSection = (props) => {
   const hour = (props.hour < 10 ? `0${props.hour}:00` : `${props.hour}:00`);
 
   return (
-    <div>
+    <li className={styles.container}>
       <div className={styles.row}>
         <span className={styles.firstColumn}>{hour}</span>
         <span className={styles.secondColumn}/>
@@ -21,7 +21,7 @@ const HourSection = (props) => {
         <span className={styles.firstColumn}/>
         <span className={styles.secondColumn}/>
       </div>
-    </div>
+    </li>
   )
 }
 
