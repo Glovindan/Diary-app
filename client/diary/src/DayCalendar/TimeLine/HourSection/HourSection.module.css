@@ -2,7 +2,7 @@
     height: 25%;
     display: flex;
     flex-direction: row;
-    border-bottom: lightgrey dotted 1px;
+    border-bottom: 1px dotted darkgrey;
     font-family: Arial, serif;
     font-size: 12px;
 }
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     width: 50px;
-    border-right: lightgrey solid 1px;
+    border-right: 1px solid darkgrey;
 }
 
 .secondColumn {
@@ -22,5 +22,5 @@
 
 
 .container {
-    height: 4%;
+    height: 120px;
 }
