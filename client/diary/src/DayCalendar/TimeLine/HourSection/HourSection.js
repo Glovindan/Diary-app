@@ -6,20 +6,16 @@ const HourSection = (props) => {
   return (
     <li className={styles.container}>
       <div className={styles.row}>
-        <span className={styles.firstColumn}>{hour}</span>
-        <span className={styles.secondColumn}/>
+        <span className={styles.column}>{hour}</span>
       </div>
       <div className={styles.row}>
-        <span className={styles.firstColumn}/>
-        <span className={styles.secondColumn}/>
+        <span className={styles.column}/>
       </div>
       <div className={styles.row}>
-        <span className={styles.firstColumn}/>
-        <span className={styles.secondColumn}/>
+        <span className={styles.column}/>
       </div>
       <div className={styles.row}>
-        <span className={styles.firstColumn}/>
-        <span className={styles.secondColumn}/>
+        <span className={styles.column}/>
       </div>
     </li>
   )

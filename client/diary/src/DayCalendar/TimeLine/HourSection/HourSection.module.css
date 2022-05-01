@@ -7,7 +7,7 @@
     font-size: 12px;
 }
 
-.firstColumn {
+.column {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,12 +15,6 @@
     border-right: 1px solid darkgrey;
 }
 
-.secondColumn {
-    width: 100%;
-    /*background: cornsilk;*/
-}
-
-
 .container {
-    height: 120px;
+    height: 60px;
 }
