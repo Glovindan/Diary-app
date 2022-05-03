@@ -24,9 +24,13 @@ const Event = (props) => {
   return (
     <div className={styles.eventWrapper}>
       <div className={styles.block} style={blockSize}>
-        <p>{formatTimeString(beginTimeHours)}:{formatTimeString(beginTimeMinutes)} - {formatTimeString(endTimeHours)}:{formatTimeString(endTimeMinutes)}</p>
-        <p>{props.topic}</p>
-        <p>{props.place}</p>
+        <span>
+          {formatTimeString(beginTimeHours)}:{formatTimeString(beginTimeMinutes)}
+          &nbsp;-&nbsp;
+          {formatTimeString(endTimeHours)}:{formatTimeString(endTimeMinutes)}.
+        </span>
+        <span> {props.topic}.</span>
+        <span> {props.place}</span>
       </div>
     </div>
   )
