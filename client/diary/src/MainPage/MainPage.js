@@ -1,6 +1,7 @@
-import DayCalendar from "../DayCalendar/DayCalendar";
 import styles from './MainPage.module.css'
-import Button from "../Components/Button";
+import Button from "../Components/Button/Button";
+import DayCalendar from "../Components/DayCalendar/DayCalendar";
+import WeekCalendar from "../Components/WeekCalendar/WeekCalendar";
 
 const MainPage = () => {
   const click = () => {
@@ -9,14 +10,15 @@ const MainPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.selectorContainer}>
-        <Button title={"День"} onClick={click} className={styles.border}/>
+        <Button title={"День"} onClick={click}/>
         <Button title={"Неделя"} onClick={click}/>
         <Button title={"Месяц"} onClick={click}/>
         <Button title={"Список"} onClick={click}/>
       </div>
 
       <div className={styles.calendarContainer}>
-        <DayCalendar/>
+        {/*<DayCalendar/>*/}
+        <WeekCalendar/>
       </div>
 
       <div className={styles.dateContainer}>

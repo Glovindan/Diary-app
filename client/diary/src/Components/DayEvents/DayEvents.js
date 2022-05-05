@@ -1,7 +1,7 @@
-import styles from './Events.module.css'
+import styles from './DayEvents.module.css'
 import Event from "./Event/Event";
 
-const Events = (props) => {
+const DayEvents = (props) => {
 
   const data = [
     {
@@ -26,7 +26,6 @@ const Events = (props) => {
       beginTime : new Date(0,0,0,0,0),
       endTime : new Date(0,0,0,0,30),
       topic : "Бегит",
-      place : "ЫЫЫЫЫЫЫ"
     },
   ]
 
@@ -47,4 +46,4 @@ const Events = (props) => {
   )
 }
 
-export default Events
+export default DayEvents

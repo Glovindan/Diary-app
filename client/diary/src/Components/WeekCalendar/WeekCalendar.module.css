@@ -1,0 +1,50 @@
+.daysContainer {
+    height: 20px;
+    margin-left: 50px;
+
+    display: grid;
+    grid-template-columns:repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+
+    background: #e5e5e5;
+    border: 1px solid darkgrey;
+    border-bottom: none;
+    border-right: none;
+}
+
+.daysContainer div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid darkgrey;
+}
+.calendarContainer {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 50px repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    border: 1px solid darkgrey;
+    border-bottom: none;
+    border-right: none;
+}
+
+.hoursWrapper {
+    border-right: 1px solid darkgrey;
+}
+
+.eventsWrapper {
+    position: relative;
+    border-right: 1px solid darkgrey;
+}

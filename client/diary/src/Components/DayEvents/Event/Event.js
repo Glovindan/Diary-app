@@ -9,28 +9,34 @@ const formatTimeString = (timeInt) => {
 }
 
 const Event = (props) => {
-  const beginTimeHours = props.beginTime.getHours();
-  const beginTimeMinutes = props.beginTime.getMinutes();
+  const {beginTime, endTime, topic, place} = props;
+
+  const beginTimeHours = beginTime.getHours();
+  const beginTimeMinutes = beginTime.getMinutes();
   const beginTimeToMinutes = beginTimeMinutes + beginTimeHours * 60;
 
-  const endTimeHours = props.endTime.getHours();
-  const endTimeMinutes = props.endTime.getMinutes();
+  const endTimeHours = endTime.getHours();
+  const endTimeMinutes = endTime.getMinutes();
   const endTimeToMinutes = endTimeMinutes + endTimeHours * 60;
 
+  let placeElement;
+  if (place) placeElement = <span> {place}.</span>;
+
   const blockSize = {
-    marginTop: `${beginTimeToMinutes}px`,
+    top: `${beginTimeToMinutes}px`,
     height: `${endTimeToMinutes - beginTimeToMinutes}px`
   }
+
   return (
-    <div className={styles.eventWrapper}>
-      <div className={styles.block} style={blockSize}>
-        <span>
+    <div style={blockSize} className={styles.eventWrapper}>
+      <div className={styles.block}>
+        <time>
           {formatTimeString(beginTimeHours)}:{formatTimeString(beginTimeMinutes)}
           &nbsp;-&nbsp;
           {formatTimeString(endTimeHours)}:{formatTimeString(endTimeMinutes)}.
-        </span>
-        <span> {props.topic}.</span>
-        <span> {props.place}</span>
+        </time>
+        <span> {topic}.</span>
+        {placeElement}
       </div>
     </div>
   )

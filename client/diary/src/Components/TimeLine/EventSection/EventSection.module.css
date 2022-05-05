@@ -1,0 +1,14 @@
+.row {
+    height: 15px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 1px dotted darkgrey;
+
+    font-family: Arial, serif;
+    font-size: 12px;
+}
