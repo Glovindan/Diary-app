@@ -1,7 +1,7 @@
 import styles from './MainPage.module.css'
 import Button from "../Components/Button/Button";
-import DayCalendar from "../Components/DayCalendar/DayCalendar";
-import WeekCalendar from "../Components/WeekCalendar/WeekCalendar";
+import DayCalendar from "../Components/Calendars/DayCalendar/DayCalendar";
+import WeekCalendar from "../Components/Calendars/WeekCalendar/WeekCalendar";
 
 const MainPage = () => {
   const click = () => {

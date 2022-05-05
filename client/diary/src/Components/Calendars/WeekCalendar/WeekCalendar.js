@@ -1,10 +1,27 @@
 import styles from './WeekCalendar.module.css'
-import HourSection from "../TimeLine/HourSection/HourSection";
-import EventSection from "../TimeLine/EventSection/EventSection";
-import DayEvents from "../DayEvents/DayEvents";
+import HourSection from "../../TimeLine/HourSection/HourSection";
+import EventSection from "../../TimeLine/EventSection/EventSection";
+import DayEvents from "../../DayEvents/DayEvents";
 
-function WeekCalendar() {
+function getWeek(date) {
+  const dayNumber =  (6 + date.getDay()) % 7;
+  const daysArr = [];
+
+  for (let i = 0; i < 7; i++) {
+    const day = new Date(date);
+    day.setDate(date.getDate() - dayNumber + i);
+    daysArr.push(day)
+  }
+
+  return daysArr;
+}
+
+function WeekCalendar(props) {
+  const date = new Date("Sun May 01 2022 03:46:18 GMT+0400");// from props
+
   const hoursArr = [...Array(24)];
+  const daysArr = getWeek(date);
+  console.log(daysArr);
 
   const hoursSection = hoursArr.map((hour, index) =>
     <HourSection key={index} hour={index}/>
