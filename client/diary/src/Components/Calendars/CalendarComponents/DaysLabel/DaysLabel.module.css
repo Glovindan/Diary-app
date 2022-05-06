@@ -1,0 +1,24 @@
+.container {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns:repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+
+    background: #e5e5e5;
+    border: 1px solid darkgrey;
+    border-bottom: none;
+    border-right: none;
+}
+
+.dayLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid darkgrey;
+}

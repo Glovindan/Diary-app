@@ -1,0 +1,26 @@
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 96fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+}
+
+.monthContainer {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    border: 1px solid darkgrey;
+    border-right: none;
+    border-bottom: none;
+}
+
+.day {
+    border: 1px solid darkgrey;
+    border-top: none;
+    border-left: none;
+}

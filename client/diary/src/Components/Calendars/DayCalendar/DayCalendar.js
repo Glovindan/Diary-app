@@ -1,7 +1,7 @@
 import styles from './DayCalendar.module.css'
-import DayEvents from "../../DayEvents/DayEvents";
-import HourSection from "../../TimeLine/HourSection/HourSection";
-import EventSection from "../../TimeLine/EventSection/EventSection";
+import DayEvents from "../CalendarComponents/DayEvents/DayEvents";
+import HourSection from "../CalendarComponents/TimeLine/HourSection/HourSection";
+import EventSection from "../CalendarComponents/TimeLine/EventSection/EventSection";
 
 function DayCalendar() {
   const hoursArr = [...Array(24)];

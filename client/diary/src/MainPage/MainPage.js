@@ -2,6 +2,7 @@ import styles from './MainPage.module.css'
 import Button from "../Components/Button/Button";
 import DayCalendar from "../Components/Calendars/DayCalendar/DayCalendar";
 import WeekCalendar from "../Components/Calendars/WeekCalendar/WeekCalendar";
+import MonthCalendar from "../Components/Calendars/MonthCalendar/MonthCalendar";
 
 const MainPage = () => {
   const click = () => {
@@ -18,7 +19,8 @@ const MainPage = () => {
 
       <div className={styles.calendarContainer}>
         {/*<DayCalendar/>*/}
-        <WeekCalendar/>
+        {/*<WeekCalendar/>*/}
+        <MonthCalendar/>
       </div>
 
       <div className={styles.dateContainer}>
