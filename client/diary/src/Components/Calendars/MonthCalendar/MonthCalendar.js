@@ -1,8 +1,9 @@
 import styles from './MonthCalendar.module.css'
 import DaysLabel from "../CalendarComponents/DaysLabel/DaysLabel";
+import MonthEvents from "./MonthEvents/MonthEvents";
 
 function MonthCalendar(props) {
-  const date = new Date(Date.now());//from props
+  const {date, handleDayClick} = props;
 
   const monthArray = [];
 
@@ -21,7 +22,7 @@ function MonthCalendar(props) {
   }
 
   const days = monthArray.map((day, index) =>
-     <div className={styles.day}>{day ? day.getDate() : ""}</div>
+     <div className={styles.day} key={index}>{day ? <MonthEvents date={day} handleDayClick={handleDayClick}/> : ""}</div>//replace with Event container
   )
 
   return (

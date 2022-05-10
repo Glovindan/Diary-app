@@ -1,0 +1,29 @@
+.container {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    cursor: pointer;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.container:hover {
+    background: #e5e5e5;
+}
+.dateContainer {
+    height: 100%;
+}
+
+.eventsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
