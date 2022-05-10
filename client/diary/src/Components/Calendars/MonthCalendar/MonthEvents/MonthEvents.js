@@ -21,7 +21,7 @@ function MonthEvents(props) {
     },
   ] //fetch from DB
 
-  const events = eventsArr.map((event, index) => <MonthEvent event={event}/>)
+  const events = eventsArr.map((event, index) => <MonthEvent key={index} event={event}/>)
   return (
     <div className={styles.container} onClick={() => handleDayClick(date)}>
       <div className={styles.dateContainer}>
