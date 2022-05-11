@@ -2,13 +2,6 @@ const db = require('../db')
 class EventController {
   async createEvent(req, res) {
     const {type, beginDateTime, endDateTime, place, topic} = req.body;
-    console.log(req.body);
-
-    const begin = new Date(beginDateTime);
-    const end = new Date(endDateTime);
-    if(begin > end){
-      return res.status(400).json('Дата окончания введена неверно')
-    }
 
     const newEvent = await db.query(
       'INSERT INTO event (type, begin_timestamp, end_timestamp, place, topic) ' +
