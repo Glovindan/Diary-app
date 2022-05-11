@@ -1,27 +1,14 @@
 const {Router} = require('express');
-
+const eventController = require('../controller/event.controller')
 const router = Router();
 
 router.route('/')
-  .get(function(req, res) {
-    res.send('Get events list');
-  })
-  .post(function(req, res) {
-    res.send('Add event');
-  })
+  .post(eventController.createEvent)
+  .get(eventController.getEvents)
+  .put(eventController.updateEvent)
 
-router.route('/*')
-  .get(function(req, res) {
-    const eventId = req.params[0];
-    res.send(`Get event ${eventId}`);
-  })
-  .put(function(req, res) {
-    const eventId = req.params[0];
-    res.send(`Update event ${eventId}`);
-  })
-  .delete(function(req, res) {
-    const eventId = req.params[0];
-    res.send(`Delete event ${eventId}`);
-  })
+router.route('/:id')
+  .get(eventController.getOneEvent)
+  .delete(eventController.deleteEvent)
 
 module.exports = router;
