@@ -1,9 +1,10 @@
 const {Router} = require('express');
 const eventController = require('../controller/event.controller')
+const checkDate = require("../middleware/validation.middleware");
 const router = Router();
 
 router.route('/')
-  .post(eventController.createEvent)
+  .post(checkDate,eventController.createEvent)
   .get(eventController.getEvents)
   .put(eventController.updateEvent)
 
