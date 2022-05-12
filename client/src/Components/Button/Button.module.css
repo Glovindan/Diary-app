@@ -1,4 +1,4 @@
-button {
+.button {
     font-family: Arial, sans-serif;
     font-size: 15px;
     padding: 5px;
@@ -6,7 +6,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.button:hover {
     background: grey;
     color: white;
 }

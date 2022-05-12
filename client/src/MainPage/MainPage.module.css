@@ -23,3 +23,18 @@
     display: flex;
     gap: 10px;
 }
+
+.popupWrapper {
+    position: absolute;
+}
+
+.topButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.addButtonWrapper {
+    border-radius: 10px;
+    overflow: hidden;
+}

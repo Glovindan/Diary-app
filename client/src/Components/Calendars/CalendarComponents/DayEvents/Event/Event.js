@@ -29,16 +29,16 @@ const Event = (props) => {
           isDone: data["is_done"]
         });
         setIsLoaded(true);
-        console.log(eventData);
       })
 
-  },[event, eventData]);
+  },[event]);
 
   const blockStyle = {};
   const eventColor = {};
   let placeElement;
   let endTimeString = "";
   let beginTimeString = "";
+
   if(isLoaded) {
     const beginTimeHours = eventData.beginDateTime.getHours();
     const beginTimeMinutes = eventData.beginDateTime.getMinutes();
