@@ -6,7 +6,7 @@ const router = Router();
 router.route('/')
   .post(checkDate,eventController.createEvent)
   .get(eventController.getEvents)
-  .put(eventController.updateEvent)
+  .put(checkDate,eventController.updateEvent)
 
 router.route('/:id')
   .get(eventController.getOneEvent)
