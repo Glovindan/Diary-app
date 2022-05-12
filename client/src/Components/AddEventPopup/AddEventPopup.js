@@ -20,6 +20,8 @@ const AddEventPopup = (props) => {
 
   const addEvent = () => {
     setIsFetching(true);
+    const queryEndDateTime = endDateTime === "" ? null : endDateTime;
+
     fetch('http://localhost:5000/events',{
       method:'POST',
       headers: {
@@ -28,7 +30,7 @@ const AddEventPopup = (props) => {
       body: JSON.stringify({
         "type": eventType,
         "beginDateTime": beginDateTime,
-        "endDateTime": endDateTime,
+        "endDateTime": queryEndDateTime,
         "place": place,
         "topic": topic
       })

@@ -1,7 +1,7 @@
 const checkDate = (req, res, next) => {
   const {type, beginDateTime, endDateTime} = req.body;
   console.log(type);
-  if (type === 2) next();
+  if (parseInt(type) === 2) next();
 
   const begin = new Date(beginDateTime);
   const end = new Date(endDateTime);
