@@ -63,7 +63,7 @@ class EventController {
     console.log(offsetQueryString);
 
     const events = await db.query(
-      'SELECT * FROM event' +
+      'SELECT id, type FROM event' +
       filterQueryString +
       ' ORDER BY begin_timestamp' +
       limitQueryString +

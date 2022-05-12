@@ -1,47 +1,26 @@
 import styles from './DayEvents.module.css'
 import Event from "./Event/Event";
+import {useEffect, useState} from "react";
 
 const DayEvents = (props) => {
+  const {date} = props;
+  const [eventsArr, setEventsArr] = useState([]);
 
-  const data = [
-    {
-      id: 0,
-      beginTime : new Date(0,0,0,6,40),
-      endTime : new Date(0,0,0,10,30),
-      topic : "Очень важная встреча с важными людьми",
-      place : "Майская 23"
-    },
-    {
-      id: 1,
-      beginTime : new Date(0,0,0,10,40),
-      endTime : new Date(0,0,0,12,30),
-      topic : "Чето там",
-      place : "Удмуртская 228"
-    },
-    {
-      id: 2,
-      beginTime : new Date(0,0,0,15,40),
-      endTime : new Date(0,0,0,23,30),
-      topic : "Чето там",
-      place : "Удмуртская 228"
-    },
-    {
-      id: 3,
-      beginTime : new Date(0,0,0,0,0),
-      endTime : new Date(0,0,0,0,30),
-      topic : "Бегит",
-    },
-  ]
+  useEffect(() => {
+    const startOfDay = new Date(date);
+    startOfDay.setUTCHours(0, 0, 0, 0);
 
-  const events = data.map(eventData =>
-    <Event
-      key = {eventData.id}
-      beginTime={eventData.beginTime}
-      endTime={eventData.endTime}
-      topic={eventData.topic}
-      place={eventData.place}
-    />
-  )
+    const endOfDay = new Date(date);
+    endOfDay.setUTCHours(23, 59, 59, 999);
+
+    fetch(`http://localhost:5000/events?beginDateTime={"gte":"${startOfDay.toISOString()}","lte":"${endOfDay.toISOString()}"}`)
+      .then((res) => res.json())
+      .then((json) => {
+        setEventsArr(json);
+      })
+  },[date])
+
+  const events = eventsArr.map(event => <Event event={event}/>)
 
   return (
     <div className={styles.container}>

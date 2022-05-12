@@ -18,7 +18,7 @@ function getWeek(date) {
 }
 
 function WeekCalendar(props) {
-  const date = new Date(Date.now());// from props
+  const {date} = props;
 
   const hoursArr = [...Array(24)];
   const weekArr = getWeek(date);

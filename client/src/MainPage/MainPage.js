@@ -30,15 +30,15 @@ const MainPage = () => {
     setDate(dateOfDay);
   }
 
-  let calendar  = <DayCalendar/>;
+  let calendar  = <DayCalendar date={date}/>;
   let dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
   switch (mode) {
     case 0:
-      calendar = <DayCalendar/>;
+      calendar = <DayCalendar date={date}/>;
       dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
       break;
     case 1:
-      calendar = <WeekCalendar/>;
+      calendar = <WeekCalendar date={date}/>;
       dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
       break;
     case 2:

@@ -3,7 +3,8 @@ import DayEvents from "../CalendarComponents/DayEvents/DayEvents";
 import HourSection from "../CalendarComponents/TimeLine/HourSection/HourSection";
 import EventSection from "../CalendarComponents/TimeLine/EventSection/EventSection";
 
-function DayCalendar() {
+function DayCalendar(props) {
+  const {date} = props;
   const hoursArr = [...Array(24)];
 
   const hoursSection = hoursArr.map((hour, index) =>
@@ -23,7 +24,7 @@ function DayCalendar() {
         <ul>
           {eventsSection}
         </ul>
-        <DayEvents/>
+        <DayEvents date={date}/>
       </div>
     </div>
   )
