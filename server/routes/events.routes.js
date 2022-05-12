@@ -4,9 +4,9 @@ const checkDate = require("../middleware/validation.middleware");
 const router = Router();
 
 router.route('/')
-  .post(checkDate,eventController.createEvent)
+  .post(checkDate, eventController.createEvent)
   .get(eventController.getEvents)
-  .put(checkDate,eventController.updateEvent)
+  .put(checkDate, eventController.updateEvent)
 
 router.route('/:id')
   .get(eventController.getOneEvent)
