@@ -1,44 +1,116 @@
 import styles from './AddEventPopup.module.css'
-import Button from "../Button/Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import CrossButton from "../CrossButton/CrossButton";
 
 const AddEventPopup = (props) => {
-  const {event} = props;
+  const {event, toggleAddClick} = props;
+
   const [eventType, setEventType] = useState(0);
+  const [beginDateTime, setBeginDateTime] = useState("");
+  const [endDateTime, setEndDateTime] = useState("");
+  const [place, setPlace] = useState("");
+  const [topic, setTopic] = useState("");
+
+  const[isFetching, setIsFetching] = useState(false);
+
+  useEffect(() => {
+    if(eventType === 2) setEndDateTime("");
+    if(eventType !== 0) setPlace("");
+  },[eventType])
+
+  const addEvent = () => {
+    setIsFetching(true);
+    fetch('http://localhost:5000/events',{
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "type": eventType,
+        "beginDateTime": beginDateTime,
+        "endDateTime": endDateTime,
+        "place": place,
+        "topic": topic
+      })
+    })
+      .then((res) => {
+        setIsFetching(false)
+        return res.json();
+      })
+      .then((json) => console.log(json))
+      .catch(e => {
+        setIsFetching(false);
+        console.log(e);
+      })
+  }
+
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        Добавление события
+      <div className={styles.header}>
+        <div className={styles.titleWrapper}>
+          Добавление события
+        </div>
+        <div className={styles.closeButtonWrapper}>
+          <CrossButton handleClick={toggleAddClick}/>
+        </div>
       </div>
       <div className={styles.inputWrapper}>
         <div className={styles.inputElementContainer}>
           <span>Тип события: </span>
-          <select name="type" id="typeSelect" onChange={(ev) => setEventType(parseInt(ev.target.value))}>
+          <select
+            name="type"
+            id="typeSelect"
+            onChange={(ev) => setEventType(parseInt(ev.target.value))}
+            value={eventType}
+          >
             <option value="0">Встреча</option>
             <option value="1">Дело</option>
             <option value="2">Памятка</option>
           </select>
         </div>
         <div className={styles.inputElementContainer}>
-          <span>Время и дата начала: </span>
-          <input type="date"/>
+          <span>Дата и время начала: </span>
+          <input
+            type="datetime-local"
+            onChange={(ev) => setBeginDateTime(ev.target.value)}
+            value={beginDateTime}
+          />
         </div>
         <div className={styles.inputElementContainer}>
-          <span>Время и дата конца: </span>
-          <input type="date" disabled={eventType === 2}/>
+          <span>Дата и время конца: </span>
+          <input
+            type="datetime-local"
+            disabled={eventType === 2}
+            onChange={(ev) => setEndDateTime(ev.target.value)}
+            value={endDateTime}
+          />
         </div>
         <div className={styles.inputElementContainer}>
           <span>Описание события: </span>
-          <input type="text" placeholder={"Тема"}/>
+          <textarea
+            placeholder="Тема"
+            maxLength={200}
+            rows={5}
+            onChange={(ev) => setTopic(ev.target.value)}
+            value={topic}
+          />
         </div>
         <div className={styles.inputElementContainer}>
           <span>Место встречи: </span>
-          <input type="text" placeholder={"Место"} disabled={eventType !== 0}/>
+          <textarea
+            type="text"
+            placeholder="Место"
+            maxLength={50}
+            rows={2}
+            disabled={eventType !== 0}
+            onChange={(ev) => setPlace(ev.target.value)}
+            value={place}
+          />
         </div>
       </div>
 
-      <button>Добавить</button>
+      <button onClick={addEvent} disabled={isFetching}>Добавить</button>
     </div>
   )
 }

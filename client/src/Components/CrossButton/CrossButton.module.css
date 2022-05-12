@@ -1,0 +1,13 @@
+.container {
+    background: none;
+    border: none;
+
+    height: 23px;
+    width: 23px;
+    cursor: pointer;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+}

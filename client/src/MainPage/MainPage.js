@@ -59,7 +59,7 @@ const MainPage = () => {
 
   let addEventWindow =
     <div className={styles.popupWrapper}>
-      <AddEventPopup/>
+      <AddEventPopup toggleAddClick={toggleAddClick}/>
     </div>
 
   return (
