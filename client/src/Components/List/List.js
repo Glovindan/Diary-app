@@ -16,7 +16,7 @@ const List = (props) => {
 
     let searchParamsString = "";
     if(searchParams.length > 0) searchParamsString = "?"+searchParams.join("&");
-    
+
     fetch(`http://localhost:5000/events${searchParamsString}`)
       .then(res => res.json())
       .then(res => setEventsArr(res))

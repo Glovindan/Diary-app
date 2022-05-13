@@ -5,7 +5,7 @@ import EventSection from "../CalendarComponents/TimeLine/EventSection/EventSecti
 
 function DayCalendar(props) {
   const {date, toggleEditClick} = props;
-  const hoursArr = [...Array(24)];
+  const hoursArr = [...Array(25)];
 
   const hoursSection = hoursArr.map((hour, index) =>
     <HourSection key={index} hour={index}/>

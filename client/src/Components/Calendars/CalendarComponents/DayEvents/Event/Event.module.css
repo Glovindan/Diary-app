@@ -14,3 +14,38 @@
     font-family: Arial, sans-serif;
     font-size: 11px;
 }
+
+.buttonsWrapper {
+    padding-top: 5px;
+    width: fit-content;
+    bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.buttonEdit {
+    color: white;
+    background: darkgrey;
+    border: none;
+    padding: 2px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.buttonEdit:hover {
+    background: #4d73b7;
+}
+
+.buttonDelete {
+    color: white;
+    background: crimson;
+    border: none;
+    padding: 2px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.buttonDelete:hover {
+    background: #b71132;
+}

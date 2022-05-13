@@ -20,7 +20,7 @@ function getWeek(date) {
 function WeekCalendar(props) {
   const {date, toggleEditClick} = props;
 
-  const hoursArr = [...Array(24)];
+  const hoursArr = [...Array(25)];
   const weekArr = getWeek(date);
 
   const hoursSection = hoursArr.map((hour, index) =>

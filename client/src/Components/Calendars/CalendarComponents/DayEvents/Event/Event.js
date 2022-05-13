@@ -14,6 +14,7 @@ const Event = (props) => {
   const {event, toggleEditClick, getDayEvents} = props;
   const [eventData, setEventData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   const deleteEvent = () => {
     fetch(`http://localhost:5000/events/${event.id}`, {
@@ -83,7 +84,7 @@ const Event = (props) => {
 
 
   return (
-    <div style={blockStyle} className={styles.eventWrapper}>
+    <div style={blockStyle} className={styles.eventWrapper} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <div className={styles.block} style={eventColor}>
         <time>
           {beginTimeString}
@@ -92,10 +93,14 @@ const Event = (props) => {
         <span> {eventData.topic}.</span>
         {placeElement}
       </div>
-      <div>
-        <button onClick={() => toggleEditClick(event)}>Редактировать</button>
-        <button onClick={() => deleteEvent()}>Удалить</button>
-      </div>
+      {
+        isHover
+        &&
+        <div className={styles.buttonsWrapper}>
+          <button className={styles.buttonEdit} onClick={() => toggleEditClick(event)}>Редактировать</button>
+          <button className={styles.buttonDelete} onClick={() => deleteEvent()}>Удалить</button>
+        </div>
+      }
     </div>
   )
 }
