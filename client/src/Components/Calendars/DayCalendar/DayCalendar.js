@@ -4,7 +4,7 @@ import HourSection from "../CalendarComponents/TimeLine/HourSection/HourSection"
 import EventSection from "../CalendarComponents/TimeLine/EventSection/EventSection";
 
 function DayCalendar(props) {
-  const {date, toggleAddClick} = props;
+  const {date, toggleEditClick} = props;
   const hoursArr = [...Array(24)];
 
   const hoursSection = hoursArr.map((hour, index) =>
@@ -24,7 +24,7 @@ function DayCalendar(props) {
         <ul>
           {eventsSection}
         </ul>
-        <DayEvents date={date} toggleAddClick={toggleAddClick}/>
+        <DayEvents date={date} toggleEditClick={toggleEditClick}/>
       </div>
     </div>
   )

@@ -6,6 +6,7 @@ import MonthCalendar from "../Components/Calendars/MonthCalendar/MonthCalendar";
 import {useEffect, useState} from "react";
 import AddEventPopup from "../Components/AddEventPopup/AddEventPopup";
 import EditEventPopup from "../Components/EditEventPopup/EditEventPopup";
+import List from "../Components/List/List";
 
 const MainPage = () => {
   const MONTH_NAMES_RU = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
@@ -51,16 +52,19 @@ const MainPage = () => {
   let dateLabel;
   switch (mode) {
     case 0:
-      calendar = <DayCalendar date={date} toggleAddClick={toggleEditClick}/>;
+      calendar = <DayCalendar date={date} toggleEditClick={toggleEditClick}/>;
       dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
       break;
     case 1:
-      calendar = <WeekCalendar date={date} toggleAddClick={toggleEditClick}/>;
+      calendar = <WeekCalendar date={date} toggleEditClick={toggleEditClick}/>;
       dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
       break;
     case 2:
       calendar = <MonthCalendar date={date} handleDayClick={handleDayClick}/>;
       dateLabel = `${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
+      break;
+    case 3:
+      calendar = <List/>;
       break;
     default:
       setMode(0);
@@ -97,14 +101,16 @@ const MainPage = () => {
         {calendar}
       </div>
 
-      <div className={styles.dateContainer}>
-        <Button title={"Назад"} onClick={() => setDate(changeDate(mode, date, false))}/>
-        <span>{dateLabel}</span>
-        <Button title={"Вперед"} onClick={() => setDate(changeDate(mode, date, true))}/>
-      </div>
+      {mode !== 3 &&
+        <div className={styles.dateContainer}>
+          <Button title={"Назад"} onClick={() => setDate(changeDate(mode, date, false))}/>
+          <span>{dateLabel}</span>
+          <Button title={"Вперед"} onClick={() => setDate(changeDate(mode, date, true))}/>
+        </div>
+      }
 
-      {isAddEvent ? addEventWindow : null}
-      {isEditEvent ? editEventWindow : null}
+      {isAddEvent && addEventWindow}
+      {isEditEvent && editEventWindow}
     </div>
   )
 }

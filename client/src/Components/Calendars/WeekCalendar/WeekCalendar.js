@@ -18,7 +18,7 @@ function getWeek(date) {
 }
 
 function WeekCalendar(props) {
-  const {date, toggleAddClick} = props;
+  const {date, toggleEditClick} = props;
 
   const hoursArr = [...Array(24)];
   const weekArr = getWeek(date);
@@ -34,7 +34,7 @@ function WeekCalendar(props) {
       <ul>
         {eventsSection}
       </ul>
-      <DayEvents date={dayDate} toggleAddClick={toggleAddClick}/>
+      <DayEvents date={dayDate} toggleEditClick={toggleEditClick}/>
     </div>
   )
 

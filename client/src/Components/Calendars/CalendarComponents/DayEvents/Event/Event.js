@@ -11,9 +11,17 @@ const formatTimeString = (timeInt) => {
 }
 
 const Event = (props) => {
-  const {event, toggleAddClick} = props;
+  const {event, toggleEditClick, getDayEvents} = props;
   const [eventData, setEventData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const deleteEvent = () => {
+    fetch(`http://localhost:5000/events/${event.id}`, {
+      method: "DELETE"
+    })
+      .then(() => getDayEvents())
+      .catch(e => console.log(e))
+  }
 
   useEffect(() => {
     fetch(`http://localhost:5000/events/${event.id}`)
@@ -85,8 +93,8 @@ const Event = (props) => {
         {placeElement}
       </div>
       <div>
-        <button onClick={() => toggleAddClick(event)}>Редактировать</button>
-        <button>Удалить</button>
+        <button onClick={() => toggleEditClick(event)}>Редактировать</button>
+        <button onClick={() => deleteEvent()}>Удалить</button>
       </div>
     </div>
   )

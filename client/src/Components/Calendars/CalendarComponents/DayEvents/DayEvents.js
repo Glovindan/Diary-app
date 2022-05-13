@@ -3,10 +3,10 @@ import Event from "./Event/Event";
 import {useEffect, useState} from "react";
 
 const DayEvents = (props) => {
-  const {date, toggleAddClick} = props;
+  const {date, toggleEditClick} = props;
   const [eventsArr, setEventsArr] = useState([]);
 
-  useEffect(() => {
+  const getDayEvents = () => {
     const startOfDay = new Date(date);
     startOfDay.setHours(0, 0, 0, 0);
 
@@ -18,9 +18,13 @@ const DayEvents = (props) => {
       .then((json) => {
         setEventsArr(json);
       })
+  }
+
+  useEffect(() => {
+    getDayEvents();
   },[date])
 
-  const events = eventsArr.map(event => <Event event={event} toggleAddClick={toggleAddClick}/>)
+  const events = eventsArr.map(event => <Event event={event} toggleEditClick={toggleEditClick} getDayEvents={getDayEvents}/>)
 
   return (
     <div className={styles.container}>

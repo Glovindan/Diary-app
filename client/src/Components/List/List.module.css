@@ -1,0 +1,17 @@
+.optionsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 15px;
+
+    padding: 10px;
+    border: 1px solid darkgrey;
+}
+
+.eventsWrapper {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

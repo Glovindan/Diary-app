@@ -87,7 +87,7 @@ class EventController {
       const event = await db.query('SELECT * FROM event WHERE id = $1', [id]);
 
       if (event.rows[0]) return res.status(200).json(event.rows[0]);
-      return res.status(404).send();
+      return res.status(404).json();
     } catch (e) {
       return res.status(500).json(e);
     }
