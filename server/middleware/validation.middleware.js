@@ -1,7 +1,9 @@
 const checkDate = (req, res, next) => {
   const {type, beginDateTime, endDateTime} = req.body;
-  console.log(type);
-  if (parseInt(type) === 2) next();
+
+  if (parseInt(type) === 2) {
+    return next();
+  }
 
   const begin = new Date(beginDateTime);
   const end = new Date(endDateTime);
@@ -10,7 +12,7 @@ const checkDate = (req, res, next) => {
     return res.status(400).json('Дата окончания введена неверно')
   }
 
-  next();
+  return next();
 }
 
 module.exports = checkDate;

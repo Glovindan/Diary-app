@@ -11,7 +11,7 @@ const formatTimeString = (timeInt) => {
 }
 
 const Event = (props) => {
-  const {event} = props;
+  const {event, toggleAddClick} = props;
   const [eventData, setEventData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -83,6 +83,10 @@ const Event = (props) => {
         </time>
         <span> {eventData.topic}.</span>
         {placeElement}
+      </div>
+      <div>
+        <button onClick={() => toggleAddClick(event)}>Редактировать</button>
+        <button>Удалить</button>
       </div>
     </div>
   )

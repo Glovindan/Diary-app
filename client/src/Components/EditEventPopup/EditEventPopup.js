@@ -1,45 +1,85 @@
-import styles from './AddEventPopup.module.css'
+import styles from './EditEventPopup.module.css'
 import {useEffect, useState} from "react";
 import CrossButton from "../CrossButton/CrossButton";
 
-const AddEventPopup = (props) => {
-  const {toggleAddClick} = props;
+const EditEventPopup = (props) => {
+  const formatDate = (date) => {
+    if (date === null) return date;
+
+    const d = new Date(date);
+    const year = '' + d.getFullYear();
+    let month = '' + (d.getMonth() + 1);
+    month = month.length > 1 ? month : '0'+ month;
+    let day = '' + d.getDate();
+    day = day.length > 1 ? day : '0'+ day;
+    let hours = '' + d.getHours();
+    hours = hours.length > 1 ? hours : '0'+ hours;
+    let minutes = '' + d.getMinutes();
+    minutes = minutes.length > 1 ? minutes : '0'+ minutes;
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`
+  }
+
+  const {event, toggleEditClick} = props;
 
   const [eventType, setEventType] = useState(0);
   const [beginDateTime, setBeginDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
   const [place, setPlace] = useState("");
   const [topic, setTopic] = useState("");
+  const [isDone, setIsDone] = useState(null);
 
   const[isFetching, setIsFetching] = useState(false);
+
+  useEffect(() => {
+    if(event) {
+      fetch(`http://localhost:5000/events/${event.id}`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setEventType(data.type);
+          setBeginDateTime(formatDate(data["begin_timestamp"]));
+          setEndDateTime(formatDate(data["end_timestamp"]));
+          setPlace(data.place);
+          setTopic(data.topic);
+          setIsDone(data["is_done"]);
+        })
+        .catch(e => {
+          setIsFetching(false);
+        })
+    }
+  },[event]);
 
   useEffect(() => {
     if(eventType === 2) setEndDateTime("");
     if(eventType !== 0) setPlace("");
   },[eventType])
 
-  const addEvent = () => {
+  const editEvent = () => {
     setIsFetching(true);
     const queryEndDateTime = endDateTime === "" ? null : endDateTime;
 
     fetch('http://localhost:5000/events',{
-      method:'POST',
+      method:'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        "id": event.id,
         "type": eventType,
         "beginDateTime": beginDateTime,
         "endDateTime": queryEndDateTime,
         "place": place,
-        "topic": topic
+        "topic": topic,
+        "isDone": isDone
       })
     })
       .then((res) => {
         setIsFetching(false);
         return res.json();
       })
-      .then((json) => console.log(json))
+      .then()
       .catch(e => {
         setIsFetching(false);
       })
@@ -49,12 +89,13 @@ const AddEventPopup = (props) => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.titleWrapper}>
-          Добавление события
+          Редактирование события
         </div>
         <div className={styles.closeButtonWrapper}>
-          <CrossButton handleClick={toggleAddClick}/>
+          <CrossButton handleClick={toggleEditClick}/>
         </div>
       </div>
+
       <div className={styles.inputWrapper}>
         <div className={styles.inputElementContainer}>
           <span>Тип события: </span>
@@ -110,9 +151,9 @@ const AddEventPopup = (props) => {
         </div>
       </div>
 
-      <button onClick={() => addEvent() } disabled={isFetching}>Добавить</button>
+      <button onClick={() => editEvent()} disabled={isFetching}> Обновить </button>
     </div>
   )
 }
 
-export default AddEventPopup;
+export default EditEventPopup;

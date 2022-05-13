@@ -5,6 +5,7 @@ import WeekCalendar from "../Components/Calendars/WeekCalendar/WeekCalendar";
 import MonthCalendar from "../Components/Calendars/MonthCalendar/MonthCalendar";
 import {useEffect, useState} from "react";
 import AddEventPopup from "../Components/AddEventPopup/AddEventPopup";
+import EditEventPopup from "../Components/EditEventPopup/EditEventPopup";
 
 const MainPage = () => {
   const MONTH_NAMES_RU = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
@@ -27,9 +28,18 @@ const MainPage = () => {
   const [mode, setMode] = useState(0);
   const [date, setDate] = useState(new Date(Date.now()));
   const [isAddEvent, setIsAddEvent] = useState(false);
+  const [isEditEvent, setIsEditEvent] = useState(false);
+  const [eventToEdit, setEventToEdit] = useState(null);
 
   const toggleAddClick = () => {
+    setIsEditEvent(false);
     setIsAddEvent(!isAddEvent);
+  }
+
+  const toggleEditClick = (event = null) => {
+    setEventToEdit(event);
+    setIsAddEvent(false);
+    setIsEditEvent(!isEditEvent);
   }
 
   const handleDayClick = (dateOfDay) => {
@@ -41,11 +51,11 @@ const MainPage = () => {
   let dateLabel;
   switch (mode) {
     case 0:
-      calendar = <DayCalendar date={date}/>;
+      calendar = <DayCalendar date={date} toggleAddClick={toggleEditClick}/>;
       dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
       break;
     case 1:
-      calendar = <WeekCalendar date={date}/>;
+      calendar = <WeekCalendar date={date} toggleAddClick={toggleEditClick}/>;
       dateLabel = `${date.getDate()} ${MONTH_NAMES_RU[date.getMonth()]} ${date.getFullYear()}`;
       break;
     case 2:
@@ -57,9 +67,14 @@ const MainPage = () => {
       break;
   }
 
-  let addEventWindow =
+  const addEventWindow =
     <div className={styles.popupWrapper}>
-      <AddEventPopup toggleAddClick={toggleAddClick}/>
+      <AddEventPopup toggleAddClick={toggleAddClick} event={eventToEdit}/>
+    </div>
+
+  const editEventWindow =
+    <div className={styles.popupWrapper}>
+      <EditEventPopup toggleEditClick={toggleEditClick} event={eventToEdit}/>
     </div>
 
   return (
@@ -67,7 +82,7 @@ const MainPage = () => {
       <div className={styles.topButtonsContainer}>
 
         <div className={styles.addButtonWrapper}>
-          <Button title={"Добавить событие"} onClick={toggleAddClick}/>
+          <Button title={"Добавить событие"} onClick={() => toggleAddClick()}/>
         </div>
 
         <div className={styles.selectorContainer}>
@@ -89,6 +104,7 @@ const MainPage = () => {
       </div>
 
       {isAddEvent ? addEventWindow : null}
+      {isEditEvent ? editEventWindow : null}
     </div>
   )
 }
