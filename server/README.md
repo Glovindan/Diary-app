@@ -64,5 +64,6 @@ PostgreSQL 14.2
 | place           | character varying(50)    |                    |                   |						|
 | topic           | character varying(200)   |                    | not null          |						|
 | is_done         | boolean                  |                    | not null          | false					|
+
 Индексы:
     "event_pkey" PRIMARY KEY, btree (id)
