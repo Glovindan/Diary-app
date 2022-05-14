@@ -8,7 +8,7 @@ class EventController {
       const place = req.body.place === 'null' ? null : req.body.place;
 
       const newEvent = await db.query(
-        `INSERT INTO event (type, begin_timestamp, end_timestamp, place, topic) VALUES($1, $2, $3, $4, $5) RETURNING *`,
+        `INSERT INTO event (type, begin_timestamp, end_timestamp, place, topic) VALUES($1, $2, $3, $4, $5) RETURNING id`,
         [type, beginDateTime, endDateTime, place, topic]);
 
       return res.status(201).json(newEvent.rows[0]);
@@ -106,7 +106,7 @@ class EventController {
         'topic = $5, ' +
         'is_done = $6 ' +
         'where id = $7 ' +
-        'RETURNING *',
+        'RETURNING id',
         [type, beginDateTime, endDateTime, place, topic, isDone, id]
       );
 
