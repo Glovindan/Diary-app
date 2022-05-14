@@ -54,4 +54,15 @@
 # База данных
 PostgreSQL 14.2
 ### Структура данных
-![[Pasted image 20220514043005.png]]
+                                                 Таблица "public.event"
+     Столбец     |           Тип            | Правило сортировки | Допустимость NULL |           По умолчанию
+-----------------+--------------------------+--------------------+-------------------+-----------------------------------
+ id              | bigint                   |                    | not null          | nextval('event_id_seq'::regclass)
+ type            | smallint                 |                    | not null          |
+ begin_timestamp | timestamp with time zone |                    | not null          |
+ end_timestamp   | timestamp with time zone |                    |                   |
+ place           | character varying(50)    |                    |                   |
+ topic           | character varying(200)   |                    | not null          |
+ is_done         | boolean                  |                    | not null          | false
+Индексы:
+    "event_pkey" PRIMARY KEY, btree (id)
